@@ -100,10 +100,14 @@ export class Form {
     }
 
     showError(message) {
-        // Remove existing error message
+        // Remove existing messages
         const existingError = this.form.querySelector('.error-message');
+        const existingSuccess = this.form.querySelector('.success-message');
         if (existingError) {
             existingError.remove();
+        }
+        if (existingSuccess) {
+            existingSuccess.remove();
         }
         
         // Create new error message
@@ -113,6 +117,26 @@ export class Form {
         
         // Insert at the top of the form
         this.form.insertBefore(errorDiv, this.form.firstChild);
+    }
+
+    showSuccess(message) {
+        // Remove existing messages
+        const existingError = this.form.querySelector('.error-message');
+        const existingSuccess = this.form.querySelector('.success-message');
+        if (existingError) {
+            existingError.remove();
+        }
+        if (existingSuccess) {
+            existingSuccess.remove();
+        }
+        
+        // Create new success message
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message';
+        successDiv.textContent = message;
+        
+        // Insert at the top of the form
+        this.form.insertBefore(successDiv, this.form.firstChild);
     }
 
     showLoading() {

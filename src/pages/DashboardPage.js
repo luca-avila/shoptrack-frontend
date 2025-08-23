@@ -70,10 +70,10 @@ export class DashboardPage {
         return header;
     }
 
-            async loadProducts() {
-            try {
-                this.products = await StockService.getAllProducts();
-                this.renderProducts();
+                async loadProducts() {
+        try {
+            this.products = await StockService.getAllProducts();
+            this.renderProducts();
         } catch (error) {
             console.error('Load products error:', error);
             this.showError('Failed to load products: ' + error.message);
@@ -82,6 +82,7 @@ export class DashboardPage {
 
     renderProducts() {
         this.productsContainer.innerHTML = '';
+        this.productCards.clear();
         
         if (this.products.length === 0) {
             const emptyState = document.createElement('div');

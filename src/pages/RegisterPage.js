@@ -33,7 +33,7 @@ export class RegisterPage {
         try {
             this.form.showLoading();
             await AuthService.register(data.username, data.password);
-            this.form.showError('Registration successful! Please login.');
+            this.form.showSuccess('Registration successful! Please login.');
             setTimeout(() => {
                 this.showLoginPage();
             }, 2000);

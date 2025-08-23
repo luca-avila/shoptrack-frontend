@@ -11,6 +11,13 @@ export class StockService {
                 }
             });
 
+            if (response.status === 404) {
+                const error = await response.json();
+                if (error.error === 'No products found') {
+                    return [];
+                }
+            }
+
             if (!response.ok) {
                 const error = await response.json();
                 throw new Error(error.error || 'Failed to fetch products');

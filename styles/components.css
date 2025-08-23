@@ -113,6 +113,15 @@
     margin-bottom: 1rem;
 }
 
+.success-message {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: var(--success-green);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
 /* History Table */
 .history-container {
     background: white;
