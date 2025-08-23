@@ -1,7 +1,7 @@
 import { Form } from '../components/Form.js';
 import { AuthService } from '../api/auth.js';
 
-export class LoginPage {
+export class RegisterPage {
     constructor(container, onLoginSuccess) {
         this.container = container;
         this.onLoginSuccess = onLoginSuccess;
@@ -10,30 +10,33 @@ export class LoginPage {
 
     render() {
         this.form = new Form(this.container, {
-            title: 'Login to ShopTrack',
+            title: 'Create Account',
             fields: [
                 { name: 'username', label: 'Username', type: 'text' },
                 { name: 'password', label: 'Password', type: 'password' }
             ],
-            submitText: 'Login',
-            switchText: "Don't have an account?",
-            switchLink: 'Register',
+            submitText: 'Register',
+            switchText: 'Already have an account?',
+            switchLink: 'Login',
             onSubmit: async (data) => {
-                await this.handleLogin(data);
+                await this.handleRegister(data);
             },
             onSwitch: () => {
-                this.showRegisterPage();
+                this.showLoginPage();
             }
         });
 
         this.form.render();
     }
 
-    async handleLogin(data) {
+    async handleRegister(data) {
         try {
             this.form.showLoading();
-            await AuthService.login(data.username, data.password);
-            this.onLoginSuccess();
+            await AuthService.register(data.username, data.password);
+            this.form.showError('Registration successful! Please login.');
+            setTimeout(() => {
+                this.showLoginPage();
+            }, 2000);
         } catch (error) {
             this.form.showError(error.message);
         } finally {
@@ -41,10 +44,10 @@ export class LoginPage {
         }
     }
 
-    showRegisterPage() {
-        import('./RegisterPage.js').then(module => {
-            const RegisterPage = module.RegisterPage;
-            new RegisterPage(this.container, this.onLoginSuccess).render();
+    showLoginPage() {
+        import('./LoginPage.js').then(module => {
+            const LoginPage = module.LoginPage;
+            new LoginPage(this.container, this.onLoginSuccess).render();
         });
     }
 }
