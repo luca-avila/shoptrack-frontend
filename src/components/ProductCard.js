@@ -125,16 +125,22 @@ export class ProductCard {
         buyBtn.addEventListener('click', () => {
             const quantity = parseInt(stockInput.value);
             if (quantity && quantity > 0) {
+                console.log('Buying', quantity, 'units of', this.product.name);
                 this.handleStockAction('buy', quantity);
                 stockInput.value = '';
+            } else {
+                alert('Please enter a valid quantity');
             }
         });
 
         sellBtn.addEventListener('click', () => {
             const quantity = parseInt(stockInput.value);
             if (quantity && quantity > 0) {
+                console.log('Selling', quantity, 'units of', this.product.name);
                 this.handleStockAction('sell', quantity);
                 stockInput.value = '';
+            } else {
+                alert('Please enter a valid quantity');
             }
         });
     }
@@ -143,7 +149,7 @@ export class ProductCard {
         try {
             if (action === 'buy') {
                 await this.onUpdate(this.product.id, 'addStock', quantity);
-            } else {
+            } else if (action === 'sell') {
                 await this.onUpdate(this.product.id, 'removeStock', quantity);
             }
         } catch (error) {

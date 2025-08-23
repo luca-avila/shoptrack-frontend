@@ -70,9 +70,12 @@ export class DashboardPage {
 
     async loadProducts() {
         try {
+            console.log('Loading products...');
             this.products = await StockService.getAllProducts();
+            console.log('Products loaded:', this.products);
             this.renderProducts();
         } catch (error) {
+            console.error('Load products error:', error);
             this.showError('Failed to load products: ' + error.message);
         }
     }
@@ -99,7 +102,7 @@ export class DashboardPage {
         this.products.forEach(product => {
             const card = new ProductCard(
                 product,
-                (productData) => this.handleProductUpdate(productData),
+                (productData, action, quantity) => this.handleProductUpdate(productData, action, quantity),
                 (productId) => this.handleProductDelete(productId)
             );
             
@@ -121,15 +124,22 @@ export class DashboardPage {
 
     async handleStockOperation(productId, action, quantity) {
         try {
+            console.log('Handling stock operation:', action, quantity, 'for product:', productId);
+            
             if (action === 'addStock') {
-                await StockService.addStock(productId, quantity);
+                const result = await StockService.addStock(productId, quantity);
+                console.log('Add stock result:', result);
             } else if (action === 'removeStock') {
-                await StockService.removeStock(productId, quantity);
+                const result = await StockService.removeStock(productId, quantity);
+                console.log('Remove stock result:', result);
             }
             
             // Refresh products to get updated stock
+            console.log('Refreshing products...');
             await this.loadProducts();
+            console.log('Products refreshed');
         } catch (error) {
+            console.error('Stock operation error:', error);
             this.showError(error.message);
         }
     }
