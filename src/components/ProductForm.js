@@ -90,7 +90,7 @@ export class ProductForm {
         textarea.id = name;
         textarea.name = name;
         textarea.rows = '3';
-        textarea.textContent = value;
+        textarea.value = value;
         
         group.appendChild(labelElement);
         group.appendChild(textarea);

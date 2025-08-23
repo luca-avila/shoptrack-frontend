@@ -83,10 +83,15 @@ export class DashboardPage {
         if (this.products.length === 0) {
             const emptyState = document.createElement('div');
             emptyState.className = 'empty-state';
-            emptyState.innerHTML = `
-                <h3>No products yet</h3>
-                <p>Add your first product to get started!</p>
-            `;
+            
+            const title = document.createElement('h3');
+            title.textContent = 'No products yet';
+            
+            const message = document.createElement('p');
+            message.textContent = 'Add your first product to get started!';
+            
+            emptyState.appendChild(title);
+            emptyState.appendChild(message);
             this.productsContainer.appendChild(emptyState);
             return;
         }
@@ -104,14 +109,13 @@ export class DashboardPage {
         });
     }
 
-    async handleProductUpdate(productData) {
+    async handleProductUpdate(productData, action, quantity) {
         if (typeof productData === 'object') {
             // Edit product
             this.showEditProductForm(productData);
         } else {
-            // Stock operation (productData is productId, next param is action, then quantity)
-            const [productId, action, quantity] = arguments;
-            await this.handleStockOperation(productId, action, quantity);
+            // Stock operation (productData is productId)
+            await this.handleStockOperation(productData, action, quantity);
         }
     }
 

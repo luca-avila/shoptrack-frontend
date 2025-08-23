@@ -22,6 +22,7 @@ export class Form {
         
         const submitButton = document.createElement('button');
         submitButton.type = 'submit';
+        submitButton.className = 'btn btn-primary';
         submitButton.textContent = this.config.submitText;
         this.form.appendChild(submitButton);
         
