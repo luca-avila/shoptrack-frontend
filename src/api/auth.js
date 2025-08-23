@@ -41,6 +41,27 @@ export class AuthService {
         }
     }
 
+    static async register(username, password) {
+        try {
+            const response = await fetch(`${API_CONFIG.baseURL}/auth/register`, {
+                method: 'POST',
+                headers: API_CONFIG.headers,
+                body: JSON.stringify({ username, password })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Registration failed');
+            }
+            
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Registration error:', error);
+            throw error;
+        }
+    }
+
     static getToken() {
         return localStorage.getItem('token');
     }
