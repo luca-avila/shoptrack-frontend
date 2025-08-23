@@ -53,6 +53,11 @@ export class DashboardPage {
         addBtn.textContent = 'Add Product';
         addBtn.addEventListener('click', () => this.showAddProductForm());
         
+        const historyBtn = document.createElement('button');
+        historyBtn.className = 'btn btn-secondary';
+        historyBtn.textContent = 'History';
+        historyBtn.addEventListener('click', () => this.showHistory());
+        
         const logoutBtn = document.createElement('button');
         logoutBtn.className = 'btn btn-secondary';
         logoutBtn.textContent = 'Logout';
@@ -60,6 +65,7 @@ export class DashboardPage {
         
         userInfo.appendChild(username);
         userInfo.appendChild(addBtn);
+        userInfo.appendChild(historyBtn);
         userInfo.appendChild(logoutBtn);
         
         header.appendChild(title);
@@ -248,6 +254,13 @@ export class DashboardPage {
                 errorDiv.remove();
             }
         }, 5000);
+    }
+
+    showHistory() {
+        import('./HistoryPage.js').then(module => {
+            const HistoryPage = module.HistoryPage;
+            new HistoryPage(this.container, () => this.render()).render();
+        });
     }
 
     async handleLogout() {

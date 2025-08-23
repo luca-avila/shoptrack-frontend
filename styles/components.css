@@ -1,0 +1,195 @@
+/* Form Overlay */
+.form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Product Form */
+.product-form {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-gray);
+    color: white;
+}
+
+.btn-buy {
+    background-color: var(--success-green);
+    color: white;
+}
+
+.btn-sell {
+    background-color: var(--error-red);
+    color: white;
+}
+
+.btn-edit {
+    background-color: var(--warning-amber);
+    color: white;
+}
+
+.btn-delete {
+    background-color: var(--error-red);
+    color: white;
+}
+
+/* Error Messages */
+.error-message {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: var(--error-red);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* History Table */
+.history-container {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem;
+}
+
+.history-title {
+    color: var(--primary-blue);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.history-table th,
+.history-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.history-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.history-table tr:hover {
+    background-color: #f8fafc;
+}
+
+.action-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.action-badge.buy {
+    background-color: var(--success-green);
+    color: white;
+}
+
+.action-badge.sell {
+    background-color: var(--error-red);
+    color: white;
+}
+
+.transaction-row.buy {
+    border-left: 3px solid var(--success-green);
+}
+
+.transaction-row.sell {
+    border-left: 3px solid var(--error-red);
+}
+
+.empty-history {
+    text-align: center;
+    color: var(--secondary-gray);
+    padding: 2rem;
+}
+
+/* History Content */
+.history-content {
+    padding: 0 2rem 2rem;
+}
+
+.history-table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
