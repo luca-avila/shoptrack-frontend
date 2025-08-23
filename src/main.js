@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('ShopTrack app started successfully!');
     } catch (error) {
         console.error('Failed to start app:', error);
-        document.getElementById('app').innerHTML = '<p>Error loading app</p>';
+        const appElement = document.getElementById('app');
+        if (appElement) {
+            appElement.innerHTML = '<p>Error loading app</p>';
+        }
     }
 });
