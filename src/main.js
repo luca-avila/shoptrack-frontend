@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const appContainer = document.getElementById('app');
         const app = new App(appContainer);
         app.init();
-        console.log('ShopTrack app started successfully!');
     } catch (error) {
         console.error('Failed to start app:', error);
         const appElement = document.getElementById('app');

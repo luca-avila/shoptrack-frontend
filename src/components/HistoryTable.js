@@ -16,7 +16,6 @@ export class HistoryTable {
         const table = document.createElement('table');
         table.className = 'history-table';
         
-        // Create table header
         const thead = document.createElement('thead');
         thead.innerHTML = `
             <tr>
@@ -29,7 +28,6 @@ export class HistoryTable {
             </tr>
         `;
         
-        // Create table body
         const tbody = document.createElement('tbody');
         
         if (this.history.length === 0) {
@@ -73,6 +71,8 @@ export class HistoryTable {
         
         this.element.appendChild(title);
         this.element.appendChild(table);
+        
+        this.container.appendChild(this.element);
         
         return this.element;
     }

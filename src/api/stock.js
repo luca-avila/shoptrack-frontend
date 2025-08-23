@@ -86,23 +86,25 @@ export class StockService {
         }
     }
 
-    static async deleteProduct(id) {
-        try {
-            const response = await fetch(`${API_CONFIG.baseURL}/stock/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    ...API_CONFIG.headers,
-                    'Authorization': `Bearer ${AuthService.getToken()}`
+            static async deleteProduct(id) {
+            try {
+                const response = await fetch(`${API_CONFIG.baseURL}/stock/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        ...API_CONFIG.headers,
+                        'Authorization': `Bearer ${AuthService.getToken()}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to delete product');
                 }
-            });
-
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.error || 'Failed to delete product');
-            }
-
-            return await response.json();
+    
+                const result = await response.json();
+                return result;
         } catch (error) {
+            console.error('Delete product error:', error);
             throw error;
         }
     }
@@ -165,8 +167,10 @@ export class StockService {
                 throw new Error(error.error || 'Failed to fetch history');
             }
 
-            return await response.json();
+            const result = await response.json();
+            return result;
         } catch (error) {
+            console.error('History API error:', error);
             throw error;
         }
     }

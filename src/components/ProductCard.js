@@ -10,7 +10,6 @@ export class ProductCard {
         this.element = document.createElement('div');
         this.element.className = 'product-card';
         
-        // Create product header
         const header = document.createElement('div');
         header.className = 'product-header';
         
@@ -35,7 +34,6 @@ export class ProductCard {
         header.appendChild(title);
         header.appendChild(actions);
         
-        // Create product info
         const info = document.createElement('div');
         info.className = 'product-info';
         
@@ -68,7 +66,6 @@ export class ProductCard {
             info.appendChild(descInfo);
         }
         
-        // Create stock actions
         const stockActions = document.createElement('div');
         stockActions.className = 'stock-actions';
         
@@ -96,7 +93,6 @@ export class ProductCard {
         inputGroup.appendChild(sellBtn);
         stockActions.appendChild(inputGroup);
         
-        // Assemble the card
         this.element.appendChild(header);
         this.element.appendChild(info);
         this.element.appendChild(stockActions);

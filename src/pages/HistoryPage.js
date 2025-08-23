@@ -12,22 +12,18 @@ export class HistoryPage {
     async render() {
         this.container.innerHTML = '';
         
-        // Create header
         const header = this.createHeader();
         this.container.appendChild(header);
         
-        // Create content area
         const content = document.createElement('div');
         content.className = 'history-content';
         
-        // Create history table container
         this.historyContainer = document.createElement('div');
         this.historyContainer.className = 'history-table-container';
         content.appendChild(this.historyContainer);
         
         this.container.appendChild(content);
         
-        // Load history
         await this.loadHistory();
     }
 
@@ -64,11 +60,13 @@ export class HistoryPage {
             const history = await StockService.getHistory();
             this.renderHistoryTable(history);
         } catch (error) {
+            console.error('History load error:', error);
             this.showError('Failed to load history: ' + error.message);
         }
     }
 
     renderHistoryTable(history) {
+        
         if (this.historyTable) {
             this.historyTable.destroy();
         }
@@ -82,7 +80,6 @@ export class HistoryPage {
         errorDiv.className = 'error-message';
         errorDiv.textContent = message;
         
-        // Remove existing error
         const existingError = this.container.querySelector('.error-message');
         if (existingError) {
             existingError.remove();
@@ -90,7 +87,6 @@ export class HistoryPage {
         
         this.container.insertBefore(errorDiv, this.container.firstChild);
         
-        // Auto-remove after 5 seconds
         setTimeout(() => {
             if (errorDiv.parentNode) {
                 errorDiv.remove();

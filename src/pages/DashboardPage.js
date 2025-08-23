@@ -15,22 +15,18 @@ export class DashboardPage {
     async render() {
         this.container.innerHTML = '';
         
-        // Create header
         const header = this.createHeader();
         this.container.appendChild(header);
         
-        // Create main content area
         const mainContent = document.createElement('div');
         mainContent.className = 'dashboard-content';
         
-        // Create products container
         this.productsContainer = document.createElement('div');
         this.productsContainer.className = 'products-grid';
         mainContent.appendChild(this.productsContainer);
         
         this.container.appendChild(mainContent);
         
-        // Load products
         await this.loadProducts();
     }
 
@@ -74,12 +70,10 @@ export class DashboardPage {
         return header;
     }
 
-    async loadProducts() {
-        try {
-            console.log('Loading products...');
-            this.products = await StockService.getAllProducts();
-            console.log('Products loaded:', this.products);
-            this.renderProducts();
+            async loadProducts() {
+            try {
+                this.products = await StockService.getAllProducts();
+                this.renderProducts();
         } catch (error) {
             console.error('Load products error:', error);
             this.showError('Failed to load products: ' + error.message);
@@ -120,30 +114,21 @@ export class DashboardPage {
 
     async handleProductUpdate(productData, action, quantity) {
         if (typeof productData === 'object') {
-            // Edit product
             this.showEditProductForm(productData);
         } else {
-            // Stock operation (productData is productId)
             await this.handleStockOperation(productData, action, quantity);
         }
     }
 
     async handleStockOperation(productId, action, quantity) {
         try {
-            console.log('Handling stock operation:', action, quantity, 'for product:', productId);
-            
             if (action === 'addStock') {
-                const result = await StockService.addStock(productId, quantity);
-                console.log('Add stock result:', result);
+                await StockService.addStock(productId, quantity);
             } else if (action === 'removeStock') {
-                const result = await StockService.removeStock(productId, quantity);
-                console.log('Remove stock result:', result);
+                await StockService.removeStock(productId, quantity);
             }
             
-            // Refresh products to get updated stock
-            console.log('Refreshing products...');
             await this.loadProducts();
-            console.log('Products refreshed');
         } catch (error) {
             console.error('Stock operation error:', error);
             this.showError(error.message);
@@ -199,27 +184,44 @@ export class DashboardPage {
 
     async handleCreateProduct(data) {
         try {
-            this.currentForm.showLoading();
+            if (this.currentForm) {
+                this.currentForm.showLoading();
+            }
             await StockService.createProduct(data);
             this.hideCurrentForm();
             await this.loadProducts();
         } catch (error) {
-            this.currentForm.showError(error.message);
+            if (this.currentForm) {
+                this.currentForm.showError(error.message);
+            } else {
+                this.showError(error.message);
+            }
         } finally {
-            this.currentForm.hideLoading();
+            if (this.currentForm) {
+                this.currentForm.hideLoading();
+            }
         }
     }
 
     async handleUpdateProduct(productId, data) {
         try {
-            this.currentForm.showLoading();
+            if (this.currentForm) {
+                this.currentForm.showLoading();
+            }
             await StockService.updateProduct(productId, data);
             this.hideCurrentForm();
             await this.loadProducts();
         } catch (error) {
-            this.currentForm.showError(error.message);
+            console.error('handleUpdateProduct error:', error);
+            if (this.currentForm) {
+                this.currentForm.showError(error.message);
+            } else {
+                this.showError(error.message);
+            }
         } finally {
-            this.currentForm.hideLoading();
+            if (this.currentForm) {
+                this.currentForm.hideLoading();
+            }
         }
     }
 
@@ -240,7 +242,6 @@ export class DashboardPage {
         errorDiv.className = 'error-message';
         errorDiv.textContent = message;
         
-        // Remove existing error
         const existingError = this.container.querySelector('.error-message');
         if (existingError) {
             existingError.remove();
@@ -248,7 +249,6 @@ export class DashboardPage {
         
         this.container.insertBefore(errorDiv, this.container.firstChild);
         
-        // Auto-remove after 5 seconds
         setTimeout(() => {
             if (errorDiv.parentNode) {
                 errorDiv.remove();
@@ -257,6 +257,8 @@ export class DashboardPage {
     }
 
     showHistory() {
+        this.hideCurrentForm();
+        
         import('./HistoryPage.js').then(module => {
             const HistoryPage = module.HistoryPage;
             new HistoryPage(this.container, () => this.render()).render();
@@ -269,7 +271,7 @@ export class DashboardPage {
             this.onLogout();
         } catch (error) {
             console.error('Logout error:', error);
-            this.onLogout(); // Still logout even if API call fails
+            this.onLogout();
         }
     }
 }
