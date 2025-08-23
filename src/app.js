@@ -1,28 +1,70 @@
+import { AuthService } from './api/auth.js';
+import { LoginPage } from './pages/LoginPage.js';
+import { RegisterPage } from './pages/RegisterPage.js';
+import { DashboardPage } from './pages/DashboardPage.js';
+
 export class App {
-    constructor() {
+    constructor(container) {
+        this.container = container;
+        this.currentPage = null;
         this.state = {
             user: null,
-            transactions: [],
-            currentPage: 'login'
+            isAuthenticated: false
         };
-        this.api = null; // API service
     }
 
     init() {
-        this.setupEventListeners();
         this.checkAuth();
         this.render();
     }
 
-    setupEventListeners() {
-        // Global event listeners
-    }
-
     checkAuth() {
-        // Check if user is logged in
+        const user = AuthService.getUser();
+        const isAuthenticated = AuthService.isAuthenticated();
+        
+        this.state.user = user;
+        this.state.isAuthenticated = isAuthenticated;
     }
 
     render() {
-        // Render current page based on state
+        if (this.state.isAuthenticated) {
+            this.showDashboard();
+        } else {
+            this.showLogin();
+        }
+    }
+
+    showLogin() {
+        this.currentPage = new LoginPage(
+            this.container,
+            () => this.handleLoginSuccess()
+        );
+        this.currentPage.render();
+    }
+
+    showRegister() {
+        this.currentPage = new RegisterPage(
+            this.container,
+            () => this.handleLoginSuccess()
+        );
+        this.currentPage.render();
+    }
+
+    showDashboard() {
+        this.currentPage = new DashboardPage(
+            this.container,
+            () => this.handleLogout()
+        );
+        this.currentPage.render();
+    }
+
+    handleLoginSuccess() {
+        this.checkAuth();
+        this.showDashboard();
+    }
+
+    handleLogout() {
+        this.checkAuth();
+        this.showLogin();
     }
 }
