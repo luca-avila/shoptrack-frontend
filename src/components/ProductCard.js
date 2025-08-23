@@ -40,17 +40,31 @@ export class ProductCard {
         info.className = 'product-info';
         
         const stockInfo = document.createElement('p');
-        stockInfo.innerHTML = '<strong>Stock:</strong> <span class="stock-amount">' + this.product.stock + '</span>';
+        const stockLabel = document.createElement('strong');
+        stockLabel.textContent = 'Stock: ';
+        const stockSpan = document.createElement('span');
+        stockSpan.className = 'stock-amount';
+        stockSpan.textContent = this.product.stock;
+        stockInfo.appendChild(stockLabel);
+        stockInfo.appendChild(stockSpan);
         
         const priceInfo = document.createElement('p');
-        priceInfo.innerHTML = '<strong>Price:</strong> $' + this.product.price;
+        const priceLabel = document.createElement('strong');
+        priceLabel.textContent = 'Price: ';
+        const priceText = document.createTextNode('$' + this.product.price);
+        priceInfo.appendChild(priceLabel);
+        priceInfo.appendChild(priceText);
         
         info.appendChild(stockInfo);
         info.appendChild(priceInfo);
         
         if (this.product.description) {
             const descInfo = document.createElement('p');
-            descInfo.innerHTML = '<strong>Description:</strong> ' + this.product.description;
+            const descLabel = document.createElement('strong');
+            descLabel.textContent = 'Description: ';
+            const descText = document.createTextNode(this.product.description);
+            descInfo.appendChild(descLabel);
+            descInfo.appendChild(descText);
             info.appendChild(descInfo);
         }
         
