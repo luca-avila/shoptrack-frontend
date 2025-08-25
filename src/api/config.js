@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://shoptrack-backend.onrender.com',
     headers: {
         'Content-Type': 'application/json'
     }
