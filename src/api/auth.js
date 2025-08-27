@@ -27,17 +27,20 @@ export class AuthService {
     static async logout() {
         try {
             const token = this.getToken();
-            await fetch(`${API_CONFIG.baseURL}/auth/logout`, {
-                method: 'POST',
-                headers: {
-                    ...API_CONFIG.headers,
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
+            if (token) {
+                await fetch(`${API_CONFIG.baseURL}/auth/logout`, {
+                    method: 'POST',
+                    headers: {
+                        ...API_CONFIG.headers,
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            }
         } catch (error) {
             console.error('Logout error:', error);
+        } finally {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
         }
     }
 
@@ -73,5 +76,13 @@ export class AuthService {
 
     static isAuthenticated() {
         return !!this.getToken();
+    }
+
+    // Handle authentication errors globally
+    static handleAuthError() {
+        console.log('Authentication error detected, logging out...');
+        this.logout();
+        // Redirect to login page
+        window.location.reload();
     }
 }

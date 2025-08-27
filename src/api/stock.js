@@ -11,6 +11,11 @@ export class StockService {
                 }
             });
 
+            if (response.status === 401) {
+                AuthService.handleAuthError();
+                return;
+            }
+
             if (response.status === 404) {
                 const error = await response.json();
                 if (error.error === 'No products found') {
@@ -38,6 +43,11 @@ export class StockService {
                 }
             });
 
+            if (response.status === 401) {
+                AuthService.handleAuthError();
+                return;
+            }
+
             if (!response.ok) {
                 const error = await response.json();
                 throw new Error(error.error || 'Failed to fetch product');
@@ -59,6 +69,11 @@ export class StockService {
                 },
                 body: JSON.stringify(productData)
             });
+
+            if (response.status === 401) {
+                AuthService.handleAuthError();
+                return;
+            }
 
             if (!response.ok) {
                 const error = await response.json();
@@ -168,6 +183,11 @@ export class StockService {
                     'Authorization': `Bearer ${AuthService.getToken()}`
                 }
             });
+
+            if (response.status === 401) {
+                AuthService.handleAuthError();
+                return;
+            }
 
             if (!response.ok) {
                 const error = await response.json();
