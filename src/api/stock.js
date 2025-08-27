@@ -118,8 +118,8 @@ export class StockService {
 
     static async addStock(id, quantity) {
         try {
-            const response = await fetch(`${API_CONFIG.baseURL}/stock/${id}/stock`, {
-                method: 'POST',
+            const response = await fetch(`${API_CONFIG.baseURL}/stock/${id}/stock/add`, {
+                method: 'PATCH',
                 headers: {
                     ...API_CONFIG.headers,
                     'Authorization': `Bearer ${AuthService.getToken()}`
@@ -140,8 +140,8 @@ export class StockService {
 
     static async removeStock(id, quantity) {
         try {
-            const response = await fetch(`${API_CONFIG.baseURL}/stock/${id}/stock`, {
-                method: 'DELETE',
+            const response = await fetch(`${API_CONFIG.baseURL}/stock/${id}/stock/remove`, {
+                method: 'PATCH',
                 headers: {
                     ...API_CONFIG.headers,
                     'Authorization': `Bearer ${AuthService.getToken()}`
