@@ -5,130 +5,221 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(4px);
 }
 
 /* Product Form */
 .product-form {
     background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-xl);
     padding: 2rem;
     max-width: 500px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /* Form Groups */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--text-dark);
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.875rem;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
+    padding: 0.875rem;
+    border: 1px solid var(--neutral-300);
+    border-radius: var(--radius-md);
     font-size: 1rem;
+    transition: all var(--transition-fast);
+    background-color: var(--neutral-50);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-blue);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    border-color: var(--neutral-400);
 }
 
 /* Form Actions */
 .form-actions {
     display: flex;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
-/* Buttons */
+/* Buttons - Redesigned */
 .btn {
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
 }
 
 .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none !important;
 }
 
+.btn:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:not(:disabled):active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Primary Button */
 .btn-primary {
-    background-color: var(--primary-blue);
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-sky));
     color: white;
+    box-shadow: var(--shadow-sm);
 }
 
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8, #0284c7);
+}
+
+/* Secondary Button - Neutral */
 .btn-secondary {
-    background-color: var(--secondary-gray);
-    color: white;
+    background: var(--neutral-100);
+    color: var(--neutral-700);
+    border: 1px solid var(--neutral-300);
 }
 
+.btn-secondary:hover {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
+}
+
+/* Action Buttons - Semantic Colors */
 .btn-buy {
-    background-color: var(--success-green);
+    background: linear-gradient(135deg, var(--success-green), #059669);
     color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-buy:hover {
+    background: linear-gradient(135deg, #059669, #047857);
 }
 
 .btn-sell {
-    background-color: var(--error-red);
+    background: linear-gradient(135deg, var(--error-red), #dc2626);
     color: white;
+    box-shadow: var(--shadow-sm);
 }
 
+.btn-sell:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+/* Edit/Delete Buttons - Neutral Design */
 .btn-edit {
-    background-color: var(--warning-amber);
-    color: white;
+    background: var(--neutral-100);
+    color: var(--neutral-700);
+    border: 1px solid var(--neutral-300);
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+}
+
+.btn-edit:hover {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
+    color: var(--neutral-800);
 }
 
 .btn-delete {
-    background-color: var(--error-red);
-    color: white;
+    background: var(--neutral-100);
+    color: var(--error-red);
+    border: 1px solid var(--neutral-300);
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+}
+
+.btn-delete:hover {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
 }
 
 /* Error Messages */
 .error-message {
-    background-color: #fef2f2;
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
     border: 1px solid #fecaca;
     color: var(--error-red);
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
 }
 
 .success-message {
-    background-color: #f0fdf4;
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
     border: 1px solid #bbf7d0;
     color: var(--success-green);
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
 }
 
 /* History Table */
 .history-container {
     background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
     margin: 2rem;
+    box-shadow: var(--shadow-md);
 }
 
 .history-title {
@@ -142,55 +233,68 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 0.875rem;
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-md);
+    overflow: hidden;
 }
 
 .history-table th,
 .history-table td {
-    padding: 0.75rem;
+    padding: 1rem 0.75rem;
     text-align: left;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--neutral-200);
 }
 
 .history-table th {
-    background-color: #f8fafc;
+    background: linear-gradient(135deg, var(--neutral-50), var(--neutral-100));
     font-weight: 600;
     color: var(--text-dark);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.history-table tr {
+    transition: background-color var(--transition-fast);
 }
 
 .history-table tr:hover {
-    background-color: #f8fafc;
+    background-color: var(--neutral-50);
 }
 
 .action-badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-md);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: var(--shadow-sm);
 }
 
 .action-badge.buy {
-    background-color: var(--success-green);
+    background: linear-gradient(135deg, var(--success-green), #059669);
     color: white;
 }
 
 .action-badge.sell {
-    background-color: var(--error-red);
+    background: linear-gradient(135deg, var(--error-red), #dc2626);
     color: white;
 }
 
 .transaction-row.buy {
-    border-left: 3px solid var(--success-green);
+    border-left: 4px solid var(--success-green);
 }
 
 .transaction-row.sell {
-    border-left: 3px solid var(--error-red);
+    border-left: 4px solid var(--error-red);
 }
 
 .empty-history {
     text-align: center;
-    color: var(--secondary-gray);
+    color: var(--neutral-500);
     padding: 2rem;
+    font-style: italic;
 }
 
 /* History Content */
@@ -201,4 +305,63 @@
 .history-table-container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Responsive adjustments for components */
+@media (max-width: 768px) {
+    .product-form {
+        padding: 1.5rem;
+        margin: 1rem;
+        width: 95%;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .history-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .history-table {
+        font-size: 0.75rem;
+    }
+    
+    .history-table th,
+    .history-table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .action-badge {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.625rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-form {
+        padding: 1rem;
+        border-radius: var(--radius-lg);
+    }
+    
+    .history-container {
+        margin: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .history-table {
+        font-size: 0.625rem;
+    }
+    
+    .history-table th,
+    .history-table td {
+        padding: 0.5rem 0.25rem;
+    }
 }
