@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--background-light);
@@ -15,6 +23,9 @@ body {
 /* App Container */
 #app {
     min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Dashboard Header */
@@ -169,8 +180,9 @@ body {
     padding: 2rem;
     max-width: 400px;
     width: 100%;
-    margin: 2rem auto;
+    margin: 0;
     box-shadow: var(--shadow-lg);
+    box-sizing: border-box;
 }
 
 /* Auth form container for proper centering */
@@ -178,7 +190,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
     padding: 1rem;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
 }
 
 .auth-form h2 {
@@ -263,8 +279,9 @@ body {
     .auth-form {
         margin: 0;
         padding: 1.5rem;
-        width: calc(100% - 2rem);
+        width: 100%;
         max-width: 360px;
+        box-sizing: border-box;
     }
     
     #app {
@@ -277,6 +294,9 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
+        box-sizing: border-box;
+        max-width: 100%;
     }
 }
 
@@ -308,8 +328,10 @@ body {
     
     .auth-form {
         padding: 1.25rem;
-        width: calc(100% - 1rem);
+        width: 100%;
+        max-width: 320px;
         border-radius: var(--radius-md);
+        box-sizing: border-box;
     }
     
     #app {
@@ -317,9 +339,12 @@ body {
     }
     
     #app.auth-page {
-        padding: 0.5rem;
+        padding: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
+        box-sizing: border-box;
+        max-width: 100%;
     }
 }
