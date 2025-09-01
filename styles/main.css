@@ -183,18 +183,19 @@ body {
     margin: 0;
     box-shadow: var(--shadow-lg);
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 /* Auth form container for proper centering */
 #app.auth-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     padding: 1rem;
     box-sizing: border-box;
     margin: 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .auth-form h2 {
@@ -282,6 +283,7 @@ body {
         width: 100%;
         max-width: 360px;
         box-sizing: border-box;
+        flex-shrink: 0;
     }
     
     #app {
@@ -332,6 +334,8 @@ body {
         max-width: 320px;
         border-radius: var(--radius-md);
         box-sizing: border-box;
+        flex-shrink: 0;
+        margin: 0;
     }
     
     #app {
