@@ -180,10 +180,9 @@ body {
     padding: 2rem;
     max-width: 400px;
     width: 100%;
-    margin: 0;
+    margin: 2rem auto;
     box-shadow: var(--shadow-lg);
     box-sizing: border-box;
-    flex-shrink: 0;
 }
 
 /* Auth form container for proper centering */
@@ -278,12 +277,11 @@ body {
     }
     
     .auth-form {
-        margin: 0;
+        margin: 0 auto;
         padding: 1.5rem;
-        width: 100%;
+        width: calc(100% - 2rem);
         max-width: 360px;
         box-sizing: border-box;
-        flex-shrink: 0;
     }
     
     #app {
@@ -330,12 +328,11 @@ body {
     
     .auth-form {
         padding: 1.25rem;
-        width: 100%;
+        width: calc(100% - 1rem);
         max-width: 320px;
         border-radius: var(--radius-md);
         box-sizing: border-box;
-        flex-shrink: 0;
-        margin: 0;
+        margin: 0 auto;
     }
     
     #app {

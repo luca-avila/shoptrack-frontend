@@ -10,7 +10,7 @@ export class LoginPage {
 
     render() {
         // Add auth-page class for proper mobile centering
-        this.container.parentElement.className = 'auth-page';
+        this.container.parentElement.classList.add('auth-page');
         
         this.form = new Form(this.container, {
             title: 'Login to ShopTrack',
