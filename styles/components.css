@@ -231,6 +231,7 @@
 
 .history-table {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
     font-size: 0.875rem;
     box-shadow: var(--shadow-sm);
@@ -305,6 +306,8 @@
 .history-table-container {
     max-width: 1200px;
     margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Responsive adjustments for components */
@@ -328,15 +331,22 @@
     .history-container {
         margin: 1rem;
         padding: 1rem;
+        overflow-x: auto;
+    }
+    
+    .history-content {
+        padding: 0 1rem 1rem;
     }
     
     .history-table {
         font-size: 0.75rem;
+        min-width: 500px;
     }
     
     .history-table th,
     .history-table td {
         padding: 0.75rem 0.5rem;
+        white-space: nowrap;
     }
     
     .action-badge {
@@ -354,14 +364,30 @@
     .history-container {
         margin: 0.5rem;
         padding: 0.75rem;
+        border-radius: var(--radius-md);
+    }
+    
+    .history-content {
+        padding: 0 0.5rem 0.5rem;
     }
     
     .history-table {
         font-size: 0.625rem;
+        min-width: 450px;
     }
     
     .history-table th,
     .history-table td {
         padding: 0.5rem 0.25rem;
+        white-space: nowrap;
+    }
+    
+    .history-table th {
+        font-size: 0.5rem;
+    }
+    
+    .action-badge {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.5rem;
     }
 }

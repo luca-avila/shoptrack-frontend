@@ -173,6 +173,14 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+/* Auth form container for proper centering */
+#app.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
 .auth-form h2 {
     text-align: center;
     color: var(--primary-blue);
@@ -253,8 +261,22 @@ body {
     }
     
     .auth-form {
-        margin: 1rem;
+        margin: 0;
         padding: 1.5rem;
+        width: calc(100% - 2rem);
+        max-width: 360px;
+    }
+    
+    #app {
+        padding: 1rem;
+        min-height: 100vh;
+    }
+    
+    #app.auth-page {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -282,5 +304,22 @@ body {
     
     .product-info strong {
         min-width: auto;
+    }
+    
+    .auth-form {
+        padding: 1.25rem;
+        width: calc(100% - 1rem);
+        border-radius: var(--radius-md);
+    }
+    
+    #app {
+        padding: 0.5rem;
+    }
+    
+    #app.auth-page {
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -15,6 +15,9 @@ export class DashboardPage {
     async render() {
         this.container.innerHTML = '';
         
+        // Remove auth-page class when showing dashboard
+        this.container.parentElement.className = '';
+        
         const header = this.createHeader();
         this.container.appendChild(header);
         
